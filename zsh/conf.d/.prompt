@@ -1,0 +1,42 @@
+#===============================================================================
+# RioZsh prompt
+#===============================================================================
+
+
+function prompt-git-current-branch
+{
+    local branch_name st branch_status
+ 
+    if [ ! -e  ".git" ]; then
+        return
+    fi
+
+    branch_name=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
+        st=`git status 2> /dev/null`
+
+    if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
+        prompt_color="%F{green}"
+        branch_status=""
+    elif [[ -n `echo "$st" | grep "^Untracked files"` ]]; then
+        prompt_color="%F{red}"
+        branch_status="*"
+    elif [[ -n `echo "$st" | grep "^Changes not staged for commit"` ]]; then
+        prompt_color="%F{red}"
+        branch_status="+"
+    elif [[ -n `echo "$st" | grep "^Changes to be committed"` ]]; then
+        prompt_color="%F{yellow}"
+        branch_status="!"
+    elif [[ -n `echo "$st" | grep "^rebase in progress"` ]]; then
+        echo "%F{red}!(no branch)"
+        return
+    else
+        prompt_color="%F{blue}"
+        branch_status=""
+    fi
+
+    echo "${prompt_color}[$branch_name]${branch_status}%f"
+}
+
+PROMPT='
+%F{green}[%D %T]%f %F{cyan}%n%f@%m %F{blue}[%d]%f `prompt-git-current-branch` 
+$ '
