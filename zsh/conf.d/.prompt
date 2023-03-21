@@ -2,7 +2,6 @@
 # RioZsh prompt
 #===============================================================================
 
-
 function prompt-git-current-branch
 {
     local branch_name st branch_status
