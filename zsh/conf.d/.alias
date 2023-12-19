@@ -28,13 +28,13 @@ alias gf="git fetch"
 alias gm="git merge"
 
 # docker
-alias dc="sudo docker-compose"
-alias dcb="sudo docker-compose build"
-alias dcu="sudo docker-compose up"
-alias dcud="sudo docker-compose up -d"
-alias dcd="sudo docker-compose down"
-alias dce="sudo docker-compose exec"
-alias dcp="sudo docker-compose ps"
+alias dc="docker-compose"
+alias dcb="docker-compose build"
+alias dcu="docker-compose up"
+alias dcud="docker-compose up -d"
+alias dcd="docker-compose down"
+alias dce="docker-compose exec"
+alias dcp="docker-compose ps"
 
 # tmux
 alias ta="tmux attach -t"
